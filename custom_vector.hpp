@@ -3,6 +3,21 @@
 // reference: https://en.cppreference.com/w/cpp/container/vector.html
 
 template<typename T>
+class MyVectorIterator{
+    public:
+        MyVectorIterator(T* dataPtr);
+        MyVectorIterator& operator++();
+        MyVectorIterator operator++(int);
+        MyVectorIterator& operator--();
+        MyVectorIterator operator--(int);
+        bool operator==(MyVectorIterator const& rhs) const;
+        bool operator!=(MyVectorIterator const& rhs) const;
+        T& operator*() const;
+    private:
+        T* dataPtr_;
+};
+
+template<typename T>
 class MyVector{
 public:
     MyVector();
@@ -27,30 +42,17 @@ public:
     size_t size() const; // return the current size of elements
     size_t max_size() const; // return the current max size of elements
     size_t capacity() const; // number of element that can still be stored in currently allocated storage.
-    bool reserve(size_t new_cap); // reserve 
-    bool shrink_to_fit(); // reduce memory by freeing unused memory;
+    // bool reserve(size_t new_cap); // reserve 
+    // bool shrink_to_fit(); // reduce memory by freeing unused memory;
 
     // modifiers
     void clear(); // clear all the contents;
     void push_back(T target); // add after last element;
     T pop_back();
 
-    class MyVectorIterator{
-    public:
-        MyVectorIterator(size_t index);
-        MyVectorIterator& operator++();
-        MyVectorIterator operator++(int);
-        MyVectorIterator& operator--();
-        MyVectorIterator operator--(int);
-        bool operator==(MyVectorIterator const& rhs) const;
-        bool operator!=(MyVectorIterator const& rhs) const;
-        T operator*() const;
-    private:
-        size_t index = 0;
-    };
-
-    MyVectorIterator begin();
-    MyVectorIterator end();
+    MyVectorIterator<T> begin();
+    MyVectorIterator<T> iter(size_t index);
+    MyVectorIterator<T> end();
 private:
     // check for current size, and grow if exceed half of the allocated memory;
     bool grow();
