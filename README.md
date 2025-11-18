@@ -5,3 +5,9 @@ This program is to test out my program design capability in c++, along with gett
 The implementation is written as close as possible with standard vector by following https://en.cppreference.com/w/cpp/container/vector.html (I skipped some stuff here and there due to complexity in some codes)
 
 The program is written using the TDD philosophy.
+
+
+TODO:
+1. Update to use smart pointers.
+2. Include more functionalities.
+3. More proper error handling.
